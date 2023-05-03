@@ -7,6 +7,20 @@ module.exports = {
     },
     mode: 'production',
     plugins: [
-        new HtmlWebpackPlugin()
-    ]
+        new HtmlWebpackPlugin({
+            template: "./src/index.pug",
+            filename: "index.html"
+        })
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.pug$/,
+                loader: 'pug-loader',
+                options: {
+                    pretty: true
+                }
+            }
+        ]
+    }
 }
