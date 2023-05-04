@@ -18,7 +18,7 @@ module.exports = {
                 { from: 'src/img', to: 'img' },
                 { from: 'src/icons', to: 'icons' }
             ],
-            
+
         })
     ],
     module: {
