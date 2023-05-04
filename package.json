@@ -1,7 +1,7 @@
 {
   "name": "bookshop",
   "version": "1.0.0",
-  "description": "**В рамках проекта вам необходимо:**",
+  "description": "bookshop project for skillfactory",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
