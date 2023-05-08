@@ -1,42 +1,42 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const PugPlugin = require('pug-plugin');
+const path = require('path');
 
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.pug',
     output: {
-        filename: 'js/bundle.js'
+        path: path.join(__dirname, 'dist/'),
+        publicPath: '/',
     },
     mode: 'production',
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "./src/index.pug",
-            filename: "index.html"
-        }),
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'src/img', to: 'img' },
                 { from: 'src/icons', to: 'icons' }
             ],
         }),
-        new MiniCssExtractPlugin({
-            filename: "css/main.css"
+        new PugPlugin({
+            pretty: true,
+            js: {
+                filename: 'js/[name].[contenthash:8].js',
+            },
+            css: {
+                filename: 'css/[name].[contenthash:8].css',
+            },
         })
     ],
     module: {
         rules: [
             {
                 test: /\.pug$/,
-                loader: 'pug-loader',
-                options: {
-                    pretty: true
-                }
+                loader: PugPlugin.loader,
             },
             {
-                test: /\.sass$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader", 'sass-loader'],
-            }
+                test: /\.(css|sass|scss)$/,
+                use: ['css-loader', 'sass-loader'],
+            },
         ]
     }
 }
