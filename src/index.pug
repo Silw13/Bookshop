@@ -7,25 +7,27 @@ html(lang="en")
         link(rel='preconnect' href='https://fonts.googleapis.com')
         link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
         link(href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Open+Sans&display=swap' rel='stylesheet')
-        link(rel="stylesheet", href="css/main.css")
+        link(rel="stylesheet" href="css/main.css")
         title Bookshop
     body 
         header.header
             div.container
-                span.header__logo Bookshop
+                h1.header__logo Bookshop
                 nav.header__navigation 
                     ul.header__navigation-list
-                        li.header__navigation-list-item 
+                        li.header__navigation-list-item.header__navigation-list-item_active 
                             a.header__navigation-link books
                         li.header__navigation-list-item
                             a.header__navigation-link audiobooks
                         li.header__navigation-list-item
+                            a.header__navigation-link Stationery & gifts
+                        li.header__navigation-list-item
                             a.header__navigation-link blog    
                 div.header__icons
-                    img.header__icon-log-in
-                    img.header__icon-search
+                    img.header__icon(src='icons/user.svg')
+                    img.header__icon(src='icons/search.svg')
                     div.header__shoping-cart
-                        img.header__icon-shoping-cart
+                        img.header__icon(src='icons/cart.svg')
                         div.header__shoping-cart-quantity
         main.main
             div.container                
@@ -90,4 +92,5 @@ html(lang="en")
                                 p.main-content__book-price $4.99
                                 button.button.button_buy-button buy now       
 
-            button.button.button_load-more-button load more                         
+            button.button.button_load-more-button load more
+            script(src="js/bundle.js")                          
