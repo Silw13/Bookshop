@@ -29,10 +29,11 @@ html(lang="en")
                     div.header__shoping-cart
                         img.header__icon(src='icons/cart.svg')
                         div.header__shoping-cart-quantity
+                            span.header__shoping-cart-quantity-text 3
         main.main
             div.container                
                 div.slider
-                    img.slider__image
+                    img.slider__image(src='img/slide_1.png')
                     div.slider__aside.slider__aside_purple
                         p.slider__aside-text
                             | Change
@@ -57,6 +58,7 @@ html(lang="en")
                         div.slider__dot 
                 div.main-content
                     div.main-content__navigation
+                        div.main-content__navigation-background
                         ul.main-content__navigation-list 
                             li.main-content__navigation-list-item.main-content__navigation-list-item-active Architecture
                             li.main-content__navigation-list-item Art & Fashion
@@ -90,7 +92,8 @@ html(lang="en")
                                     span.main-content__book-reviews 252 review
                                 p.main-content__book-description the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...
                                 p.main-content__book-price $4.99
-                                button.button.button_buy-button buy now       
+                                button.button.button_buy-button buy now
+                                                         
 
             button.button.button_load-more-button load more
             script(src="js/bundle.js")                          
