@@ -1,12 +1,12 @@
 const ENTITIES = [
     {
-        img: "/img/slide_1.jpg"
+        img: "/img/slide_1.png"
     },
     {
-        img: "/img/slide_2.jpg"
+        img: "/img/slide_2.png"
     },
     {
-        img: "/img/slide_3.jpg"
+        img: "/img/slide_3.png"
     }
 ];
 const MAIN_PHOTO = document.querySelector('.slider__image');
@@ -24,4 +24,18 @@ export function setEntity(index) {
     }
 };
 
+for (let i = 0; i < DOTS.length; i++) {
+    DOTS[i].addEventListener('click', () => {
+        setEntity(i);
+    });
+};
 
+let timer = setInterval(autoChangeDots, 5000);
+
+export function autoChangeDots() {
+    if (currentIndex == ENTITIES.length - 1) {
+        setEntity(0)
+    } else {
+        setEntity(currentIndex + 1)
+    }
+}

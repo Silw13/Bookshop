@@ -1,7 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PugPlugin = require('pug-plugin');
+// Пришлось использовать PugPlugin, pug-loader из урока обновлялся последний раз 5 лет назад и наотрез отказался у меня запускаться 
 const path = require('path');
-
 
 module.exports = {
     entry: './src/index.pug',
