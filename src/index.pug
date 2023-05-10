@@ -11,7 +11,7 @@ html(lang="en")
         title Bookshop
     body 
         header.header
-            div.container
+            div.container.header-content
                 h1.header__logo Bookshop
                 nav.header__navigation 
                     ul.header__navigation-list
@@ -24,6 +24,7 @@ html(lang="en")
                         li.header__navigation-list-item
                             a.header__navigation-link blog    
                 div.header__icons
+                    img.header__icon.burger__icon(src='icons/burger.svg')
                     img.header__icon(src='icons/user.svg')
                     img.header__icon(src='icons/search.svg')
                     div.header__shoping-cart
