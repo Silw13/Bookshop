@@ -29,8 +29,8 @@ html(lang="en")
                     img.header__icon(src='icons/search.svg' alt='search icon')
                     div.header__shoping-cart
                         img.header__icon(src='icons/cart.svg' alt='shopping cart icon')
-                        div.header__shoping-cart-quantity
-                            span.header__shoping-cart-quantity-text 3
+                        div.header__shoping-cart-quantity.header__shoping-cart-quantity_disabled
+                            span.header__shoping-cart-quantity-text 
         main.main
             div.container                
                 div.slider
@@ -93,6 +93,21 @@ html(lang="en")
                                         span.main-content__book-reviews 252 review
                                     p.main-content__book-description the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip. Chinese families and the gossipChinese families and the gossip
                                     p.main-content__book-price $4.99
-                                    button.button buy now
+                                    button.button.button_buy-button.button_buy-button-active buy now
+                            div.main-content__book-card
+                                img.main-content__book-cover(src='img/example-cover.png' alt='book cover' )
+                                div.main-content__book-info
+                                    p.main-content__book-author Kevin Kwan
+                                    p.main-content__book-name Crazy rich asians
+                                    div.main-content__book-rating
+                                        span.main-content__book-rating-star.main-content__book-rating-star_active ★
+                                        span.main-content__book-rating-star ★
+                                        span.main-content__book-rating-star ★
+                                        span.main-content__book-rating-star ★
+                                        span.main-content__book-rating-star ★
+                                        span.main-content__book-reviews 252 review
+                                    p.main-content__book-description the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip. Chinese families and the gossipChinese families and the gossip
+                                    p.main-content__book-price $4.99
+                                    button.button.button_buy-button.button_buy-button-active buy now
                         button.button.button_load-more-button load more
             script(src=require('js/index.js') defer='defer')                          
