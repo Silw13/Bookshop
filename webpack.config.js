@@ -20,10 +20,10 @@ module.exports = {
         new PugPlugin({
             pretty: true,
             js: {
-                filename: 'js/[name].[contenthash:8].js',
+                filename: 'js/main.js',
             },
             css: {
-                filename: 'css/[name].[contenthash:8].css',
+                filename: 'css/style.css',
             },
         })
     ],
