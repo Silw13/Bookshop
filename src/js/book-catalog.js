@@ -73,3 +73,5 @@ export function getBookList(category) {
         console.log(data);
     })
 }
+
+//Фетч шляпа - переделать
