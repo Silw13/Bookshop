@@ -7,6 +7,7 @@ const BOOK_CATEGORIES = ['subject:Architecture', 'subject:Art', 'subject:Biograp
 let books = bookCatalog.getBookList(BOOK_CATEGORIES[0]);
 
 console.log(books)
+console.log(books[i].volumeInfo.authors[0])
 
 
 //for (let i = 0; i < 6; i++) {
