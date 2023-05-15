@@ -71,6 +71,7 @@ export async function getBookList(category) {
     let books = await response.json();
     let result = []
     result.push(JSON.parse)
+    console.log (result);
     return result;
 }
 
