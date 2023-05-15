@@ -69,7 +69,9 @@ const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY'
 export async function getBookList(category) {
     let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
     let books = await response.json();
-    return books;
+    let result = []
+    result.push(JSON.parse)
+    return result;
 }
 
 //Фетч шляпа - переделать
