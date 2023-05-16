@@ -20,11 +20,7 @@ const BOOK_CATEGORIES = [
     'subject:Travel'
 ]
 
-let books = bookCatalog.getBookList(BOOK_CATEGORIES[0]);
-
-console.log(books)
-console.log(books[i].volumeInfo.authors[0])
-
+bookCatalog.getBookList(BOOK_CATEGORIES[0])
 
 //for (let i = 0; i < 6; i++) {
 //bookCatalog.createBook(books[i].volumeInfo.authors[0], books[i].volumeInfo.imageLinks.thumbnail, books[i].volumeInfo.imageLinks.title, books[i].volumeInfo.imageLinks.averageRating, books[i].volumeInfo.imageLinks.ratingsCount, books[i].volumeInfo.imageLinks.description, books[i].volumeInfo.imageLinks.saleInfo.retailPrice)

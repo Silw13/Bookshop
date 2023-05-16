@@ -66,13 +66,28 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
 }
 
 const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY'
-export async function getBookList(category) {
-    let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
-    let books = await response.json();
-    let result = []
-    result.push(JSON.parse)
-    console.log (result);
-    return result;
+let books = [];
+
+export function getBookList(category) {
+    books = [];
+    fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            let book = {};
+            for (let i = 0; i < 6; i++) {
+                book = {};
+                book.author = data.items[i].volumeInfo.authors[0];
+                console.log(i)
+                console.log(data.items[i].volumeInfo.authors[0])
+                book.title = data.items[i].volumeInfo.title;
+                console.log(book)
+                books.push(book)
+            }
+        });
+    console.log(books)
 }
 
 //Фетч шляпа - переделать
