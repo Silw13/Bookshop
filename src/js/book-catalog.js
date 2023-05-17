@@ -57,6 +57,24 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
 }
 
 const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
+const BOOK_CATEGORIES = [
+    'subject:Architecture',
+    'subject:Art',
+    'subject:Biography&Autobiography',
+    'subject:Business',
+    'subject:Crafts&Hobbies',
+    'subject:Drama',
+    'subject:Fiction',
+    'subject:Cooking',
+    'subject:Health&Fitness',
+    'subject:History',
+    'subject:Humor',
+    'subject:Poetry',
+    'subject:Psychology',
+    'subject:Science',
+    'subject:Technology',
+    'subject:Travel'
+];
 
 export function getBookList(category) {
     let books = [];
@@ -65,19 +83,31 @@ export function getBookList(category) {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
             let book = {};
             for (let i = 0; i < 6; i++) {
                 book = {};
-                book.author = data.items[i].volumeInfo.authors;
+                if (data.items[i].volumeInfo.authors.length > 1) {
+                    let authors = data.items[i].volumeInfo.authors.join(', ');
+                    book.author = authors;
+                } else {
+                    book.author = data.items[i].volumeInfo.authors[0];
+                }
                 book.cover = data.items[i].volumeInfo.imageLinks.thumbnail;
                 book.title = data.items[i].volumeInfo.title;
                 book.rating = data.items[i].volumeInfo.averageRating;
                 book.reviews = data.items[i].volumeInfo.ratingsCount;
                 book.description = data.items[i].volumeInfo.description;
-                book.price = data.items[i].volumeInfo.saleInfo.retailPrice;
+                if (data.items[i].saleInfo.saleability == "NOT_FOR_SALE") {
+                    book.price = 'no data'
+                } else {
+                    book.price = data.items[i].saleInfo.retailPrice.amount;
+                }
                 books.push(book);
             }
         });
     return books
 }
+
+let bookList = getBookList(BOOK_CATEGORIES[0]);
+console.log(bookList);
+console.log(bookList[0].author);
