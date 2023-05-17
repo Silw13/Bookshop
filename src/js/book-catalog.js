@@ -20,14 +20,11 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     } else {
         bookAuthor.textContent = author[0];
     }
-
     const bookName = document.createElement("p");
     bookName.classList.add("main-content__book-name");
     bookName.textContent = name;
-
     const bookRating = document.createElement("div");
     bookRating.classList.add("main-content__book-rating");
-
     for (let i = 0; i = 5; i++) {
         for (let i = 0; i < 5; i++) {
             let starRating = Math.floor(rating)
@@ -39,7 +36,6 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
             }
             bookRating.append(star)
         }
-
         const bookReviews = document.createElement("span");
         bookReviews.classList.add("main-content__book-reviews");
         bookReviews.textContent = `${reviewNum} review`;
@@ -58,26 +54,30 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
         const mainContent = document.querySelector(".main-content__book-catalog");
         mainContent.append(bookCard);
     }
-    export function getBookList(category) {
-        let books = [];
-        fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                let book = {};
-                for (let i = 0; i < 6; i++) {
-                    book = {};
-                    book.author = data.items[i].volumeInfo.authors;
-                    book.cover = data.items[i].volumeInfo.imageLinks.thumbnail;
-                    book.title = data.items[i].volumeInfo.title;
-                    book.rating = data.items[i].volumeInfo.averageRating;
-                    book.reviews = data.items[i].volumeInfo.ratingsCount;
-                    book.description = data.items[i].volumeInfo.description;
-                    book.price = data.items[i].volumeInfo.saleInfo.retailPrice;
-                    books.push(book);
-                }
-            });
-        return books
-    }
+}
+
+const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
+
+export function getBookList(category) {
+    let books = [];
+    fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            let book = {};
+            for (let i = 0; i < 6; i++) {
+                book = {};
+                book.author = data.items[i].volumeInfo.authors;
+                book.cover = data.items[i].volumeInfo.imageLinks.thumbnail;
+                book.title = data.items[i].volumeInfo.title;
+                book.rating = data.items[i].volumeInfo.averageRating;
+                book.reviews = data.items[i].volumeInfo.ratingsCount;
+                book.description = data.items[i].volumeInfo.description;
+                book.price = data.items[i].volumeInfo.saleInfo.retailPrice;
+                books.push(book);
+            }
+        });
+    return books
+}
