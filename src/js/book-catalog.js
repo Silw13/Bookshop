@@ -24,7 +24,6 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
         bookAuthor.textContent = author[0];
     }
 
-
     const bookName = document.createElement("p");
     bookName.classList.add("main-content__book-name");
     bookName.textContent = name;
@@ -32,18 +31,15 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     const bookRating = document.createElement("div");
     bookRating.classList.add("main-content__book-rating");
 
-    for (let i = 0; i = 5; i++) {
+    for (let i = 0; i < 5; i++) {
+        let starRating = Math.floor(rating)
         let star = document.createElement("span");
         star.classList.add("main-content__book-rating-star");
         star.textContent = "★";
+        if (starRating - 1 >= i) {
+            star.classList.add("main-content__book-rating-star_active");
+        }
         bookRating.append(star)
-    }
-
-    const STARS = document.querySelectorAll('.main-content__book-rating-star')
-    let starRating = Math.floor(rating)
-    for (let i = 0; i < starRating; i++) {
-        console.log(starRating)
-        console.log(STARS[i])
     }
 
     const bookReviews = document.createElement("span");
