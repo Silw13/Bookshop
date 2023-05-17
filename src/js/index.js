@@ -18,11 +18,12 @@ const BOOK_CATEGORIES = [
     'subject:Science',
     'subject:Technology',
     'subject:Travel'
-]
+];
+const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
 
-bookCatalog.getBookList(BOOK_CATEGORIES[0])
+let books = bookCatalog.getBookList(BOOK_CATEGORIES[0]);
 
-//for (let i = 0; i < 6; i++) {
-//bookCatalog.createBook(books[i].volumeInfo.authors[0], books[i].volumeInfo.imageLinks.thumbnail, books[i].volumeInfo.imageLinks.title, books[i].volumeInfo.imageLinks.averageRating, books[i].volumeInfo.imageLinks.ratingsCount, books[i].volumeInfo.imageLinks.description, books[i].volumeInfo.imageLinks.saleInfo.retailPrice)
-//}
+for (let i = 0; i < 6; i++) {
+    bookCatalog.createBook(books[i].author, books[i].cover, books[i].title, books[i].rating, books[i].reviews, books[i].description, books[i].price)
+}
 
