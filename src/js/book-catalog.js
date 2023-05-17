@@ -4,11 +4,7 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
 
     const bookCover = document.createElement("img");
     bookCover.classList.add("main-content__book-cover");
-    if (cover == false) {
-        bookCover.setAttribute("src", '/img/example-cover.png');
-    } else {
-        bookCover.setAttribute("src", cover);
-    }
+    bookCover.setAttribute("src", cover);
     bookCover.setAttribute("alt", "book cover");
 
     const bookInfo = document.createElement("div");
@@ -16,13 +12,7 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
 
     const bookAuthor = document.createElement("p");
     bookAuthor.classList.add("main-content__book-author");
-    if (author.length > 1) {
-        let authors = author;
-        authors = authors.join(',')
-        bookAuthor.textContent = authors;
-    } else {
-        bookAuthor.textContent = author[0];
-    }
+    bookAuthor.textContent = author;
 
     const bookName = document.createElement("p");
     bookName.classList.add("main-content__book-name");
@@ -31,16 +21,25 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     const bookRating = document.createElement("div");
     bookRating.classList.add("main-content__book-rating");
 
-    for (let i = 0; i < 5; i++) {
-        let starRating = Math.floor(rating)
-        let star = document.createElement("span");
-        star.classList.add("main-content__book-rating-star");
-        star.textContent = "★";
-        if (starRating - 1 >= i) {
-            star.classList.add("main-content__book-rating-star_active");
-        }
-        bookRating.append(star)
-    }
+    const star1 = document.createElement("span");
+    star1.classList.add("main-content__book-rating-star", "main-content__book-rating-star_active");
+    star1.textContent = "★";
+
+    const star2 = document.createElement("span");
+    star2.classList.add("main-content__book-rating-star");
+    star2.textContent = "★";
+
+    const star3 = document.createElement("span");
+    star3.classList.add("main-content__book-rating-star");
+    star3.textContent = "★";
+
+    const star4 = document.createElement("span");
+    star4.classList.add("main-content__book-rating-star");
+    star4.textContent = "★";
+
+    const star5 = document.createElement("span");
+    star5.classList.add("main-content__book-rating-star");
+    star5.textContent = "★";
 
     const bookReviews = document.createElement("span");
     bookReviews.classList.add("main-content__book-reviews");
@@ -58,7 +57,7 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     buyButton.classList.add("button", "button_buy-button", "button_buy-button-active");
     buyButton.textContent = "buy now";
 
-    bookRating.append(bookReviews);
+    bookRating.append(star1, star2, star3, star4, star5, bookReviews);
     bookInfo.append(bookAuthor, bookName, bookRating, bookDescription, bookPrice, buyButton);
     bookCard.append(bookCover, bookInfo);
 
@@ -66,8 +65,11 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     mainContent.append(bookCard);
 }
 
+const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY'
+let books = [];
+
 export function getBookList(category) {
-    let books = [];
+    books = [];
     fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
         .then((response) => {
             return response.json();
@@ -77,15 +79,15 @@ export function getBookList(category) {
             let book = {};
             for (let i = 0; i < 6; i++) {
                 book = {};
-                book.author = data.items[i].volumeInfo.authors;
-                book.cover = data.items[i].volumeInfo.imageLinks.thumbnail;
+                book.author = data.items[i].volumeInfo.authors[0]; // может быть несколько
+                console.log(i)
+                console.log(data.items[i].volumeInfo.authors[0])
                 book.title = data.items[i].volumeInfo.title;
-                book.rating = data.items[i].volumeInfo.averageRating;
-                book.reviews = data.items[i].volumeInfo.ratingsCount;
-                book.description = data.items[i].volumeInfo.description;
-                book.price = data.items[i].volumeInfo.saleInfo.retailPrice;
-                books.push(book);
+                console.log(book)
+                books.push(book)
             }
         });
-    return books
+    console.log(books)
 }
+
+//Фетч шляпа - переделать

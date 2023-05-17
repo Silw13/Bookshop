@@ -19,7 +19,6 @@ const BOOK_CATEGORIES = [
     'subject:Technology',
     'subject:Travel'
 ];
-const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
 
 let books = bookCatalog.getBookList(BOOK_CATEGORIES[0]);
 
