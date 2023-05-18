@@ -76,9 +76,9 @@ const BOOK_CATEGORIES = [
     'subject:Travel'
 ];
 
-export function getBookList(category) {
+export async function getBookList(category) {
     let books = [];
-    fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
+    await fetch(`https://www.googleapis.com/books/v1/volumes?q="${category}"&key=${API_KEY}&printType=books&startIndex=0&maxResults=6&langRestrict=en`)
         .then((response) => {
             return response.json();
         })
@@ -108,6 +108,6 @@ export function getBookList(category) {
     return books
 }
 
-let bookList = getBookList(BOOK_CATEGORIES[0]);
+let bookList = await getBookList(BOOK_CATEGORIES[0]);
 console.log(bookList);
 console.log(bookList[0].author);
