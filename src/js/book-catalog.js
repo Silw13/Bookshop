@@ -108,6 +108,9 @@ export async function getBookList(category) {
     return books
 }
 
-let bookList = await getBookList(BOOK_CATEGORIES[0]);
-console.log(bookList);
-console.log(bookList[0].author);
+async function test() {
+    let bookList = await getBookList(BOOK_CATEGORIES[0]);
+    console.log(bookList);
+    console.log(bookList[0].author);
+}
+test();
