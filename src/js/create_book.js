@@ -31,7 +31,11 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     }
     const bookReviews = document.createElement("span");
     bookReviews.classList.add("main-content__book-reviews");
-    bookReviews.textContent = `${reviewNum} review`;
+    if (reviewNum == false) {
+        bookReviews.textContent = `0 review`;
+    } else {
+        bookReviews.textContent = `${reviewNum} review`;
+    }
     const bookDescription = document.createElement("p");
     bookDescription.classList.add("main-content__book-description");
     bookDescription.textContent = description;

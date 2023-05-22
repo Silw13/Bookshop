@@ -54,9 +54,8 @@ async function getBookList(category, startIndex) {
     return books
 }
 
-
 async function test() {
-    let bookList = await getBookList(BOOK_CATEGORIES[0], 0);
+    let bookList = await getBookList(BOOK_CATEGORIES[4], 0);
     console.log(bookList)
     for (let i = 0; i < 6; i++) {
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price)
