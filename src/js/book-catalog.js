@@ -57,24 +57,6 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
 }
 
 const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
-const BOOK_CATEGORIES = [
-    'subject:Architecture',
-    'subject:Art',
-    'subject:Biography&Autobiography',
-    'subject:Business',
-    'subject:Crafts&Hobbies',
-    'subject:Drama',
-    'subject:Fiction',
-    'subject:Cooking',
-    'subject:Health&Fitness',
-    'subject:History',
-    'subject:Humor',
-    'subject:Poetry',
-    'subject:Psychology',
-    'subject:Science',
-    'subject:Technology',
-    'subject:Travel'
-];
 
 export async function getBookList(category) {
     let books = [];
@@ -107,10 +89,3 @@ export async function getBookList(category) {
         });
     return books
 }
-
-async function test() {
-    let bookList = await getBookList(BOOK_CATEGORIES[0]);
-    console.log(bookList);
-    console.log(bookList[0].author);
-}
-test();
