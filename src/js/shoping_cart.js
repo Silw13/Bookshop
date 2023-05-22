@@ -32,6 +32,4 @@ export function arrangeBuyButtons() {
     }
 }
 
-arrangeBuyButtons()
-
 // Добавить книги и каунтер в локал сторидж, отображение при закгрузке!
