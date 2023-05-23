@@ -21,6 +21,10 @@ const BOOK_CATEGORIES = [
     'subject:Travel'
 ];
 const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
+const BOOK_CATALOG = document.querySelector(".main-content__book-catalog");
+const CATEGORY_LI_ITEMS = document.querySelectorAll(".main-content__navigation-list-item");
+let booksOnPage = [];
+let booksInCart = [];
 
 async function getBookList(category, startIndex) {
     let books = [];
@@ -54,37 +58,26 @@ async function getBookList(category, startIndex) {
     return books
 }
 
-async function test() {
-    let bookList = await getBookList(BOOK_CATEGORIES[4], 0);
+async function createBooksOnPage(category, startIndex, catNum) {
+    mainContent.replaceChildren();
+    booksOnPage = [];
+    let bookList = await getBookList(category, startIndex);
+    let navActiveItem = document.querySelector(".main-content__navigation-list-item-active");
+    navActiveItem.classList.toggle('main-content__navigation-list-item-active');
+    CATEGORY_LI_ITEMS[catNum].classList.toggle('main-content__navigation-list-item-active');
     console.log(bookList)
     for (let i = 0; i < 6; i++) {
-        createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price)
+        booksOnPage.push(bookList[i]);
+        createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
 }
 
-test();
+createBooksOnPage(BOOK_CATEGORIES[0], 0, 0);
 
-//let navListItems = document.querySelectorAll(".main-content__navigation-list-item")
-//let mainContent = document.querySelector(".main-content__book-catalog")
-//
-//for (let i = 0; i < navListItems.length; i++) {
-//    navListItems[i].addEventListener('click', addBooksOnPage(BOOK_CATEGORIES[i], i))
-//}
-//
-//async function addBooksOnPage(category, catNum) {
-//    let navActiveItem = document.querySelector(".main-content__navigation-list-item-active")
-//    navActiveItem.classList.toggle('main-content__navigation-list-item-active')
-//    navListItems[catNum].classList.toggle('main-content__navigation-list-item-active')
-//
-//    mainContent.replaceChildren();
-//    let bookList = bookCatalog.getBookList(category);
-//    for (let i = 0; i < 5; i++) {
-//        bookCatalog.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price)
-//    }
-//    cart.arrangeBuyButtons();
-//}
-//
-//addBooksOnPage(BOOK_CATEGORIES[0], 0)
+for (let i = 0; i < navListItems.length; i++) {
+    CATEGORY_LI_ITEMS[i].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[i], i, i))
+}
+
 
 
 
