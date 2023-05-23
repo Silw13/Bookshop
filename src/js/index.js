@@ -68,9 +68,9 @@ async function createBooksOnPage(category, catNum) {
     BOOK_CATALOG.replaceChildren();
     booksOnPage = [];
     let bookList = await getBookList(category, bookStartIndex);
-    let navActiveItem = document.querySelector(".main-content__navigation-list-item-active");
-    navActiveItem.classList.toggle('main-content__navigation-list-item-active');
-    CATEGORY_LI_ITEMS[catNum].classList.toggle('main-content__navigation-list-item-active');
+    //let navActiveItem = document.querySelector(".main-content__navigation-list-item-active");
+    //navActiveItem.classList.toggle('main-content__navigation-list-item-active');
+    //CATEGORY_LI_ITEMS[catNum].classList.toggle('main-content__navigation-list-item-active');
     console.log(bookList)
     for (let i = 0; i < 6; i++) {
         booksOnPage.push(bookList[i]);
@@ -80,10 +80,10 @@ async function createBooksOnPage(category, catNum) {
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
 
-for (let i = 0; i < CATEGORY_LI_ITEMS.length; i++) {
-    CATEGORY_LI_ITEMS[i].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[i], i))
-    console.log('ok')
-}
+//for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
+//    CATEGORY_LI_ITEMS[n].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[n], n))
+//    console.log('ok')
+//}
 
 
 
