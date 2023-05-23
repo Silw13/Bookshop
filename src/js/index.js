@@ -23,6 +23,8 @@ const BOOK_CATEGORIES = [
 const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
 const BOOK_CATALOG = document.querySelector(".main-content__book-catalog");
 const CATEGORY_LI_ITEMS = document.querySelectorAll(".main-content__navigation-list-item");
+let currectCat;
+let bookStartIndex;
 let booksOnPage = [];
 let booksInCart = [];
 
@@ -58,10 +60,12 @@ async function getBookList(category, startIndex) {
     return books
 }
 
-async function createBooksOnPage(category, startIndex, catNum) {
-    mainContent.replaceChildren();
+async function createBooksOnPage(category, catNum) {
+    bookStartIndex = 0;
+    currectCat = catNum;
+    BOOK_CATALOG.replaceChildren();
     booksOnPage = [];
-    let bookList = await getBookList(category, startIndex);
+    let bookList = await getBookList(category, bookStartIndex);
     let navActiveItem = document.querySelector(".main-content__navigation-list-item-active");
     navActiveItem.classList.toggle('main-content__navigation-list-item-active');
     CATEGORY_LI_ITEMS[catNum].classList.toggle('main-content__navigation-list-item-active');
@@ -72,16 +76,15 @@ async function createBooksOnPage(category, startIndex, catNum) {
     }
 }
 
-createBooksOnPage(BOOK_CATEGORIES[0], 0, 0);
+createBooksOnPage(BOOK_CATEGORIES[0], 0);
 
 for (let i = 0; i < navListItems.length; i++) {
-    CATEGORY_LI_ITEMS[i].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[i], i, i))
+    CATEGORY_LI_ITEMS[i].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[i], i))
 }
 
 
 
 
-// отображение активной категории
 // кнопка  больше книг (поиск по классу)
 // книги в локал сторидж
 
