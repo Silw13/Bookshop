@@ -41,7 +41,7 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     bookDescription.textContent = description;
     const bookPrice = document.createElement("p");
     bookPrice.classList.add("main-content__book-price");
-    bookPrice.textContent = price;
+    bookPrice.textContent = `${price}₽`;
     const buyButton = document.createElement("button");
     buyButton.classList.add("button", "button_buy-button", "button_buy-button-active");
     buyButton.textContent = "buy now";

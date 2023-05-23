@@ -80,8 +80,9 @@ async function createBooksOnPage(category, catNum) {
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
 
-for (let i = 0; i < navListItems.length; i++) {
+for (let i = 0; i < CATEGORY_LI_ITEMS.length; i++) {
     CATEGORY_LI_ITEMS[i].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[i], i))
+    console.log('ok')
 }
 
 
