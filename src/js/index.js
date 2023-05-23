@@ -23,6 +23,8 @@ const BOOK_CATEGORIES = [
 const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
 const BOOK_CATALOG = document.querySelector(".main-content__book-catalog");
 const CATEGORY_LI_ITEMS = document.querySelectorAll(".main-content__navigation-list-item");
+const BTN_MORE_BOOKS = document.querySelector('.button_load-more-button');
+
 let currectCat;
 let bookStartIndex;
 let booksOnPage = [];
@@ -81,6 +83,8 @@ createBooksOnPage(BOOK_CATEGORIES[0], 0);
 for (let i = 0; i < navListItems.length; i++) {
     CATEGORY_LI_ITEMS[i].addEventListener('click', createBooksOnPage(BOOK_CATEGORIES[i], i))
 }
+
+
 
 
 
