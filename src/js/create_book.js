@@ -31,17 +31,13 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     }
     const bookReviews = document.createElement("span");
     bookReviews.classList.add("main-content__book-reviews");
-    if (reviewNum == false) {
-        bookReviews.textContent = `0 review`;
-    } else {
-        bookReviews.textContent = `${reviewNum} review`;
-    }
+    bookReviews.textContent = `${reviewNum} review`;
     const bookDescription = document.createElement("p");
     bookDescription.classList.add("main-content__book-description");
     bookDescription.textContent = description;
     const bookPrice = document.createElement("p");
     bookPrice.classList.add("main-content__book-price");
-    bookPrice.textContent = `${price}₽`;
+    bookPrice.textContent = price;
     const buyButton = document.createElement("button");
     buyButton.classList.add("button", "button_buy-button", "button_buy-button-active");
     buyButton.textContent = "buy now";
