@@ -38,20 +38,26 @@ function addBookToCart(buttonIndex) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].classList.toggle('button_buy-button-disabled')
         buyButtons[buttonIndex].innerText = 'in the cart'
-        shopingCartCount++;
-        if (shopingCartCount == 1) {
+
+        booksInCart.push(booksOnPage[buttonIndex])
+        console.log(booksInCart)
+
+        if (booksInCart.length == 1) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
-        BOOK_COUNTER_TXT.innerText = shopingCartCount;
+        BOOK_COUNTER_TXT.innerText = booksInCart.length;
     } else {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].classList.toggle('button_buy-button-disabled')
         buyButtons[buttonIndex].innerText = 'buy now'
-        shopingCartCount--;
-        if (shopingCartCount == 0) {
+
+        booksInCart = booksInCart.filter((book) => book !== booksOnPage[buttonIndex])
+        console.log(booksInCart)
+
+        if (booksInCart.length == 0) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
-        BOOK_COUNTER_TXT.innerText = shopingCartCount;
+        BOOK_COUNTER_TXT.innerText = booksInCart.length;
     }
 }
 
@@ -121,6 +127,18 @@ async function createBooksOnPage(category, catNum) {
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
     arrangeBuyButtons()
+    checkBooksOnPage()
+}
+
+function checkBooksOnPage() {
+    for (let i = 0; i < booksOnPage.length; i++) {
+        for (let n = 0; n < booksInCart.length; n) {
+            if (booksOnPage[i] == booksInCart[n]) {
+                buyButtons[i].classList.toggle('button_buy-button-disabled')
+                buyButtons[i].innerText = 'in the cart'
+            }
+        }
+    }
 }
 
 
@@ -139,6 +157,7 @@ async function addMoreBooksOnPage() {
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
     arrangeBuyButtons()
+    checkBooksOnPage()
 }
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
@@ -146,6 +165,7 @@ BTN_MORE_BOOKS.addEventListener('click', () => {
 })
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
+checkBooksOnPage();
 
 
 // книги в локал сторидж
