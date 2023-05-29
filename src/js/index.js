@@ -1,5 +1,4 @@
 import * as slider from './slider.js';
-import * as cart from './shoping_cart.js';
 import * as createBook from './create_book.js';
 
 const BOOK_CATEGORIES = [
@@ -32,6 +31,37 @@ let currectCat;
 let bookStartIndex;
 let booksOnPage = [];
 let booksInCart = [];
+
+// asdasd
+function addBookToCart(buttonIndex) {
+    if (buyButtons[buttonIndex].classList.contains('button_buy-button-active')) {
+        buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
+        buyButtons[buttonIndex].classList.toggle('button_buy-button-disabled')
+        buyButtons[buttonIndex].innerText = 'in the cart'
+        shopingCartCount++;
+        if (shopingCartCount == 1) {
+            BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
+        }
+        BOOK_COUNTER_TXT.innerText = shopingCartCount;
+    } else {
+        buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
+        buyButtons[buttonIndex].classList.toggle('button_buy-button-disabled')
+        buyButtons[buttonIndex].innerText = 'buy now'
+        shopingCartCount--;
+        if (shopingCartCount == 0) {
+            BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
+        }
+        BOOK_COUNTER_TXT.innerText = shopingCartCount;
+    }
+}
+
+function arrangeBuyButtons() {
+    buyButtons = document.querySelectorAll('.button_buy-button')
+    for (let i = 0; i < buyButtons.length; i++) {
+        buyButtons[i].addEventListener('click', () => addBookToCart(i))
+    }
+}
+// asdasd
 
 async function getBookList(category, startIndex) {
     let books = [];
@@ -92,7 +122,6 @@ async function createBooksOnPage(category, catNum) {
     }
 }
 
-createBooksOnPage(BOOK_CATEGORIES[0], 0);
 
 for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
     CATEGORY_LI_ITEMS[n].addEventListener('click', () => {
@@ -114,13 +143,9 @@ BTN_MORE_BOOKS.addEventListener('click', () => {
     addMoreBooksOnPage()
 })
 
+createBooksOnPage(BOOK_CATEGORIES[0], 0);
 
 
-
-
-
-
-// кнопка  больше книг (поиск по классу)
 // книги в локал сторидж
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
