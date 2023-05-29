@@ -149,7 +149,7 @@ for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
 }
 
 async function addMoreBooksOnPage() {
-    bookStartIndex = bookStartIndex + 6;
+    bookStartIndex = bookStartIndex + 7;
     let bookList = await getBookList(BOOK_CATEGORIES[currectCat], bookStartIndex);
     for (let i = 0; i < 6; i++) {
         booksOnPage.push(bookList[i]);
