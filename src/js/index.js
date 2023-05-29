@@ -120,6 +120,7 @@ async function createBooksOnPage(category, catNum) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
+    arrangeBuyButtons()
 }
 
 
@@ -137,6 +138,7 @@ async function addMoreBooksOnPage() {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
+    arrangeBuyButtons()
 }
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
