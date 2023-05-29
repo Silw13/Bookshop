@@ -99,7 +99,6 @@ for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
         console.log(n)
         createBooksOnPage(BOOK_CATEGORIES[n], n)
     })
-    console.log('ok')
 }
 
 async function addMoreBooksOnPage() {
