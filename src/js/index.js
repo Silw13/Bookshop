@@ -24,7 +24,10 @@ const API_KEY = 'AIzaSyDQNaxmJEUQ2_ySf9hL41JpK439DoaBxwY';
 const BOOK_CATALOG = document.querySelector(".main-content__book-catalog");
 const CATEGORY_LI_ITEMS = document.querySelectorAll(".main-content__navigation-list-item");
 const BTN_MORE_BOOKS = document.querySelector('.button_load-more-button');
+const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
+const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
+let buyButtons = [];
 let currectCat;
 let bookStartIndex;
 let booksOnPage = [];
@@ -83,8 +86,6 @@ async function createBooksOnPage(category, catNum) {
     let navActiveItem = document.querySelector(".main-content__navigation-list-item-active");
     navActiveItem.classList.toggle('main-content__navigation-list-item-active');
     CATEGORY_LI_ITEMS[catNum].classList.toggle('main-content__navigation-list-item-active');
-    console.log(bookList)
-    console.log(category)
     for (let i = 0; i < 6; i++) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
@@ -101,6 +102,20 @@ for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
     console.log('ok')
 }
 
+async function addMoreBooksOnPage() {
+    bookStartIndex = bookStartIndex + 6;
+    let bookList = await getBookList(currectCat, bookStartIndex);
+    for (let i = 0; i < 6; i++) {
+        booksOnPage.push(bookList[i]);
+        createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
+    }
+}
+
+BTN_MORE_BOOKS.addEventListener('click', () => {
+    addMoreBooksOnPage()
+})
+
+
 
 
 
@@ -109,6 +124,5 @@ for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
 // кнопка  больше книг (поиск по классу)
 // книги в локал сторидж
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
-// закреп навигации
 // два доп баннера в медиа запросы
-
+// рабочая корзина
