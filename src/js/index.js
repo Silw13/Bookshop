@@ -62,10 +62,11 @@ function addBookToCart(buttonIndex) {
 }
 
 function arrangeBuyButtons() {
+    buyButtons = [];
     buyButtons = document.querySelectorAll('.button_buy-button')
     for (let i = 0; i < buyButtons.length; i++) {
-        buyButtons[i].addEventListener('click', () =>
-            addBookToCart(i))
+        buyButtons[i].addEventListener('click', () => addBookToCart(i))
+        console.log (buyButtons[i])
     }
 }
 // asdasd
@@ -127,46 +128,59 @@ async function createBooksOnPage(category, catNum) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
-    await arrangeBuyButtons()
+    arrangeBuyButtons()
+    checkBooksOnPage()
 }
 
-//function checkBooksOnPage() {
-//    for (let i = 0; i < booksOnPage.length; i++) {
-//        for (let n = 0; n < booksInCart.length; n) {
-//            if (booksOnPage[i] == booksInCart[n]) {
-//                buyButtons[i].classList.toggle('button_buy-button-disabled')
-//                buyButtons[i].innerText = 'in the cart'
-//            }
-//        }
-//    }
-//}
+function checkBooksOnPage() {
+    for (let i = 0; i < booksOnPage.length; i++) {
+        for (let n = 0; n < booksInCart.length; n) {
+            if (booksOnPage[i] == booksInCart[n]) {
+                buyButtons[i].classList.toggle('button_buy-button-disabled')
+                buyButtons[i].innerText = 'in the cart'
+            }
+        }
+    }
+}
 
 
 for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
     CATEGORY_LI_ITEMS[n].addEventListener('click', () => {
+        console.log(n)
         createBooksOnPage(BOOK_CATEGORIES[n], n)
     })
 }
 
 async function addMoreBooksOnPage() {
-    bookStartIndex = bookStartIndex + 7;
-    let bookList = await getBookList(BOOK_CATEGORIES[currectCat], bookStartIndex);
+    bookStartIndex = bookStartIndex + 6;
+    let bookList = await getBookList(currectCat, bookStartIndex);
     for (let i = 0; i < 6; i++) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
-    await arrangeBuyButtons()
+    arrangeBuyButtons()
+    checkBooksOnPage()
 }
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
-    addMoreBooksOnPage()
+    //    addMoreBooksOnPage()
+    addTestBooks()
+
 })
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
-
+checkBooksOnPage();
 
 
 // книги в локал сторидж
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
 // рабочая корзина
+
+function addTestBooks() {
+    for (let i = 0; i < 6; i++) {
+        createBook.createBook('test atuhor', false, 'test name', 4, 22, 'test description', 20);
+    }
+    arrangeBuyButtons()
+    console.log(buyButtons)
+}
