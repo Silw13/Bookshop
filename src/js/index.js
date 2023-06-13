@@ -30,7 +30,8 @@ let buyButtons = [];
 let currectCat;
 let bookStartIndex;
 let booksOnPage = [];
-let booksInCart = [];
+let booksInCart= [];
+
 
 function addBookToCart(buttonIndex) {
     if (buyButtons[buttonIndex].classList.contains('button_buy-button-active')) {
@@ -132,10 +133,11 @@ async function createBooksOnPage(category, catNum) {
 
 function checkBooksOnPage() {
     for (let i = 0; i < booksOnPage.length; i++) {
-        for (let n = 0; n < booksInCart.length; n) {
-            if (booksOnPage[i] == booksInCart[n]) {
+        for (let n = 0; n < booksInCart.length; n++) {
+            if (JSON.stringify(booksOnPage[i]) === JSON.stringify(booksInCart[n])) {
                 buyButtons[i].classList.toggle('button_buy-button-disabled')
                 buyButtons[i].innerText = 'in the cart'
+                break;
             }
         }
     }
@@ -155,7 +157,7 @@ async function addMoreBooksOnPage() {
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
     arrangeBuyButtons(bookStartIndex)
-
+    checkBooksOnPage()
 }
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
@@ -170,5 +172,5 @@ checkBooksOnPage();
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
 // рабочая корзина
-// чек букс проблема
+
 
