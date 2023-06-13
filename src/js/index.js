@@ -32,7 +32,6 @@ let bookStartIndex;
 let booksOnPage = [];
 let booksInCart = [];
 
-// asdasd
 function addBookToCart(buttonIndex) {
     if (buyButtons[buttonIndex].classList.contains('button_buy-button-active')) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
@@ -61,15 +60,14 @@ function addBookToCart(buttonIndex) {
     }
 }
 
-function arrangeBuyButtons() {
+function arrangeBuyButtons(buyButtonStartIndex) {
     buyButtons = [];
     buyButtons = document.querySelectorAll('.button_buy-button')
-    for (let i = 0; i < buyButtons.length; i++) {
+    for (let i = buyButtonStartIndex; i < buyButtons.length; i++) {
         buyButtons[i].addEventListener('click', () => addBookToCart(i))
-        console.log (buyButtons[i])
+        console.log(buyButtons[i])
     }
 }
-// asdasd
 
 async function getBookList(category, startIndex) {
     let books = [];
@@ -128,7 +126,7 @@ async function createBooksOnPage(category, catNum) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
-    arrangeBuyButtons()
+    arrangeBuyButtons(bookStartIndex)
     checkBooksOnPage()
 }
 
@@ -143,10 +141,8 @@ function checkBooksOnPage() {
     }
 }
 
-
 for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
     CATEGORY_LI_ITEMS[n].addEventListener('click', () => {
-        console.log(n)
         createBooksOnPage(BOOK_CATEGORIES[n], n)
     })
 }
@@ -158,14 +154,12 @@ async function addMoreBooksOnPage() {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
     }
-    arrangeBuyButtons()
-    checkBooksOnPage()
+    arrangeBuyButtons(bookStartIndex)
+
 }
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
-    //    addMoreBooksOnPage()
-    addTestBooks()
-
+    addMoreBooksOnPage()
 })
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
@@ -176,11 +170,5 @@ checkBooksOnPage();
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
 // рабочая корзина
+// чек букс проблема
 
-function addTestBooks() {
-    for (let i = 0; i < 6; i++) {
-        createBook.createBook('test atuhor', false, 'test name', 4, 22, 'test description', 20);
-    }
-    arrangeBuyButtons()
-    console.log(buyButtons)
-}
