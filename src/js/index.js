@@ -30,13 +30,12 @@ let buyButtons = [];
 let currectCat;
 let bookStartIndex;
 let booksOnPage = [];
-let booksInCart= [];
+let booksInCart = [];
 
 
 function addBookToCart(buttonIndex) {
     if (buyButtons[buttonIndex].classList.contains('button_buy-button-active')) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
-        buyButtons[buttonIndex].classList.toggle('button_buy-button-disabled')
         buyButtons[buttonIndex].innerText = 'in the cart'
 
         booksInCart.push(booksOnPage[buttonIndex])
@@ -48,7 +47,6 @@ function addBookToCart(buttonIndex) {
         BOOK_COUNTER_TXT.innerText = booksInCart.length;
     } else {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
-        buyButtons[buttonIndex].classList.toggle('button_buy-button-disabled')
         buyButtons[buttonIndex].innerText = 'buy now'
 
         booksInCart = booksInCart.filter((book) => book !== booksOnPage[buttonIndex])
@@ -135,7 +133,7 @@ function checkBooksOnPage() {
     for (let i = 0; i < booksOnPage.length; i++) {
         for (let n = 0; n < booksInCart.length; n++) {
             if (JSON.stringify(booksOnPage[i]) === JSON.stringify(booksInCart[n])) {
-                buyButtons[i].classList.toggle('button_buy-button-disabled')
+                buyButtons[i].classList.toggle('button_buy-button-active')
                 buyButtons[i].innerText = 'in the cart'
                 break;
             }
@@ -162,6 +160,7 @@ async function addMoreBooksOnPage() {
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
     addMoreBooksOnPage()
+   // addTestBooks()
 })
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
@@ -171,6 +170,11 @@ checkBooksOnPage();
 // книги в локал сторидж
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
-// рабочая корзина
-// путаница с классами
 
+function addTestBooks() {
+    for (let i = 0; i < 6; i++) {
+        createBook.createBook("Test Author", false, "Test Book", 4, 222,"Test description", 20)
+    }
+    arrangeBuyButtons(bookStartIndex)
+    checkBooksOnPage()
+}
