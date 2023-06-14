@@ -175,14 +175,3 @@ checkBooksOnPage();
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
 
-
-let testbooks = 0;
-function localStorTest() {
-    testbooks = testbooks + 1
-    const cachedData = localStorage.setItem('cachedData', testbooks)
-
-}
-
-testbooks = localStorage.getItem('cachedData');
-
-console.log(testbooks)
