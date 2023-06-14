@@ -26,21 +26,24 @@ const BTN_MORE_BOOKS = document.querySelector('.button_load-more-button');
 const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
 const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
+let booksInCart = [];
+if (localStorage.getItem('cachedData') != null) {
+    booksInCart = localStorage.getItem('cachedData');
+}
 let buyButtons = [];
 let currectCat;
 let bookStartIndex;
 let booksOnPage = [];
-let booksInCart = [];
-
 
 function addBookToCart(buttonIndex) {
     if (buyButtons[buttonIndex].classList.contains('button_buy-button-active')) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].innerText = 'in the cart'
-
         booksInCart.push(booksOnPage[buttonIndex])
-        console.log(booksInCart)
 
+        const cachedData = localStorage.setItem('cachedData', booksInCart);
+
+        console.log(booksInCart)
         if (booksInCart.length == 1) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
@@ -48,10 +51,11 @@ function addBookToCart(buttonIndex) {
     } else {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].innerText = 'buy now'
-
         booksInCart = booksInCart.filter((book) => book !== booksOnPage[buttonIndex])
-        console.log(booksInCart)
 
+        const cachedData = localStorage.setItem('cachedData', booksInCart);
+
+        console.log(booksInCart)
         if (booksInCart.length == 0) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
@@ -135,7 +139,7 @@ function checkBooksOnPage() {
             if (JSON.stringify(booksOnPage[i]) === JSON.stringify(booksInCart[n])) {
                 buyButtons[i].classList.toggle('button_buy-button-active')
                 buyButtons[i].innerText = 'in the cart'
-                break;
+                return;
             }
         }
     }
@@ -160,7 +164,7 @@ async function addMoreBooksOnPage() {
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
     addMoreBooksOnPage()
-   // addTestBooks()
+    //localStorTest()
 })
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
@@ -171,10 +175,14 @@ checkBooksOnPage();
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
 
-function addTestBooks() {
-    for (let i = 0; i < 6; i++) {
-        createBook.createBook("Test Author", false, "Test Book", 4, 222,"Test description", 20)
-    }
-    arrangeBuyButtons(bookStartIndex)
-    checkBooksOnPage()
+
+let testbooks = 0;
+function localStorTest() {
+    testbooks = testbooks + 1
+    const cachedData = localStorage.setItem('cachedData', testbooks)
+
 }
+
+testbooks = localStorage.getItem('cachedData');
+
+console.log(testbooks)
