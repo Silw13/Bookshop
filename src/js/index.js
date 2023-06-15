@@ -27,9 +27,9 @@ const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
 const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
 let booksInCart = [];
-if (localStorage.getItem('cachedData') != null) {
-    booksInCart = localStorage.getItem('cachedData');
-}
+//if (localStorage.getItem('cachedData') != null) {
+//    booksInCart = localStorage.getItem('cachedData');
+//}
 let buyButtons = [];
 let currectCat;
 let bookStartIndex;
@@ -40,9 +40,8 @@ function addBookToCart(buttonIndex) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].innerText = 'in the cart'
         booksInCart.push(booksOnPage[buttonIndex])
-
-        
-        const cachedData = localStorage.setItem('cachedData', booksInCart);
+       
+        //const cachedData = localStorage.setItem('cachedData', booksInCart);
 
         console.log(booksInCart);
         if (booksInCart.length == 1) {
@@ -56,7 +55,7 @@ function addBookToCart(buttonIndex) {
 
          
        booksInCart = booksInCart.filter((book) => JSON.stringify(book) !== JSON.stringify(booksOnPage[buttonIndex])); 
-        const cachedData = localStorage.setItem('cachedData', booksInCart);
+        //const cachedData = localStorage.setItem('cachedData', booksInCart);
 
         console.log(booksInCart)
         if (booksInCart.length == 0) {
@@ -155,7 +154,9 @@ for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
 
 async function addMoreBooksOnPage() {
     bookStartIndex = bookStartIndex + 6;
-    let bookList = await getBookList(currectCat, bookStartIndex);
+    let bookList = await getBookList(BOOK_CATEGORIES[currectCat], bookStartIndex);
+    console.log(currectCat)
+    console.log(BOOK_CATEGORIES[currectCat])
     for (let i = 0; i < 6; i++) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
