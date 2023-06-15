@@ -164,6 +164,3 @@ BTN_MORE_BOOKS.addEventListener('click', () => {
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
 checkBooksOnPage();
-
-// кнопка купить внизу карточки на постоянке  см как делал в ютолк
-// два доп баннера в медиа запросы
