@@ -54,7 +54,7 @@ function addBookToCart(buttonIndex) {
         
 
 
-        //booksInCart = booksInCart.filter((book) => book !== booksOnPage[buttonIndex]); Найти книгу и удалить ее из корзины
+        booksInCart = booksInCart.filter((book) => book !== booksOnPage[buttonIndex]); 
        // const cachedData = localStorage.setItem('cachedData', booksInCart);
 
         console.log(booksInCart)
@@ -141,7 +141,6 @@ function checkBooksOnPage() {
             if (JSON.stringify(booksOnPage[i]) === JSON.stringify(booksInCart[n])) {
                 buyButtons[i].classList.toggle('button_buy-button-active')
                 buyButtons[i].innerText = 'in the cart'
-                return;
             }
         }
     }
