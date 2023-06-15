@@ -70,7 +70,6 @@ function arrangeBuyButtons(buyButtonStartIndex) {
     buyButtons = document.querySelectorAll('.button_buy-button')
     for (let i = buyButtonStartIndex; i < buyButtons.length; i++) {
         buyButtons[i].addEventListener('click', () => addBookToCart(i))
-        console.log(buyButtons[i])
     }
 }
 
@@ -155,8 +154,6 @@ for (let n = 0; n < CATEGORY_LI_ITEMS.length; n++) {
 async function addMoreBooksOnPage() {
     bookStartIndex = bookStartIndex + 6;
     let bookList = await getBookList(BOOK_CATEGORIES[currectCat], bookStartIndex);
-    console.log(currectCat)
-    console.log(BOOK_CATEGORIES[currectCat])
     for (let i = 0; i < 6; i++) {
         booksOnPage.push(bookList[i]);
         createBook.createBook(bookList[i].author, bookList[i].cover, bookList[i].title, bookList[i].rating, bookList[i].reviews, bookList[i].description, bookList[i].price);
