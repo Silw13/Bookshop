@@ -41,9 +41,10 @@ function addBookToCart(buttonIndex) {
         buyButtons[buttonIndex].innerText = 'in the cart'
         booksInCart.push(booksOnPage[buttonIndex])
 
+        
         //const cachedData = localStorage.setItem('cachedData', booksInCart);
 
-        console.log(booksInCart)
+        console.log(booksInCart);
         if (booksInCart.length == 1) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
@@ -53,8 +54,8 @@ function addBookToCart(buttonIndex) {
         buyButtons[buttonIndex].innerText = 'buy now'
         
 
-
-        booksInCart = booksInCart.filter((book) => book !== booksOnPage[buttonIndex]); 
+         
+       booksInCart = booksInCart.filter((book) => JSON.stringify(book) !== JSON.stringify(booksOnPage[buttonIndex])); 
        // const cachedData = localStorage.setItem('cachedData', booksInCart);
 
         console.log(booksInCart)
