@@ -27,9 +27,11 @@ const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
 const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
 let booksInCart = [];
-//if (localStorage.getItem('cachedData') != null) {
-//    booksInCart = localStorage.getItem('cachedData');
-//}
+if (JSON.parse(localStorage.getItem('cashedCart')) != false) {
+    booksInCart = JSON.parse(localStorage.getItem('cashedCart'));
+    BOOK_COUNTER_TXT.innerText = booksInCart.length;
+    BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
+}
 let buyButtons = [];
 let currectCat;
 let bookStartIndex;
@@ -39,10 +41,8 @@ function addBookToCart(buttonIndex) {
     if (buyButtons[buttonIndex].classList.contains('button_buy-button-active')) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].innerText = 'in the cart'
-        booksInCart.push(booksOnPage[buttonIndex])
-       
-        //const cachedData = localStorage.setItem('cachedData', booksInCart);
-
+        booksInCart.push(booksOnPage[buttonIndex]);
+        localStorage.setItem('cashedCart', JSON.stringify(booksInCart));
         console.log(booksInCart);
         if (booksInCart.length == 1) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
@@ -50,13 +50,9 @@ function addBookToCart(buttonIndex) {
         BOOK_COUNTER_TXT.innerText = booksInCart.length;
     } else {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
-        buyButtons[buttonIndex].innerText = 'buy now'
-        
-
-         
-       booksInCart = booksInCart.filter((book) => JSON.stringify(book) !== JSON.stringify(booksOnPage[buttonIndex])); 
-        //const cachedData = localStorage.setItem('cachedData', booksInCart);
-
+        buyButtons[buttonIndex].innerText = 'buy now';
+        booksInCart = booksInCart.filter((book) => JSON.stringify(book) !== JSON.stringify(booksOnPage[buttonIndex]));
+        localStorage.setItem('cashedCart', JSON.stringify(booksInCart));
         console.log(booksInCart)
         if (booksInCart.length == 0) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
@@ -164,13 +160,10 @@ async function addMoreBooksOnPage() {
 
 BTN_MORE_BOOKS.addEventListener('click', () => {
     addMoreBooksOnPage()
-    //localStorTest()
 })
 
 createBooksOnPage(BOOK_CATEGORIES[0], 0);
 checkBooksOnPage();
 
-
-// книги в локал сторидж
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
