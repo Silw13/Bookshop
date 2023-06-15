@@ -27,9 +27,9 @@ const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
 const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
 let booksInCart = [];
-//if (localStorage.getItem('cachedData') != null) {
-//    booksInCart = localStorage.getItem('cachedData');
-//}
+if (localStorage.getItem('cachedData') != null) {
+    booksInCart = localStorage.getItem('cachedData');
+}
 let buyButtons = [];
 let currectCat;
 let bookStartIndex;
@@ -42,7 +42,7 @@ function addBookToCart(buttonIndex) {
         booksInCart.push(booksOnPage[buttonIndex])
 
         
-        //const cachedData = localStorage.setItem('cachedData', booksInCart);
+        const cachedData = localStorage.setItem('cachedData', booksInCart);
 
         console.log(booksInCart);
         if (booksInCart.length == 1) {
@@ -56,7 +56,7 @@ function addBookToCart(buttonIndex) {
 
          
        booksInCart = booksInCart.filter((book) => JSON.stringify(book) !== JSON.stringify(booksOnPage[buttonIndex])); 
-       // const cachedData = localStorage.setItem('cachedData', booksInCart);
+        const cachedData = localStorage.setItem('cachedData', booksInCart);
 
         console.log(booksInCart)
         if (booksInCart.length == 0) {
@@ -176,4 +176,3 @@ checkBooksOnPage();
 // книги в локал сторидж
 // кнопка купить внизу карточки на постоянке  см как делал в ютолк
 // два доп баннера в медиа запросы
-// в чекбукс добавить механизм удаления
