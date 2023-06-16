@@ -38,7 +38,6 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
         bookRating.append(bookReviews);
     }
 
-
     const bookDescription = document.createElement("p");
     bookDescription.classList.add("main-content__book-description");
     bookDescription.textContent = description;
