@@ -101,7 +101,7 @@ async function getBookList(category, startIndex) {
                 }
                 book.description = data.items[i].volumeInfo.description;
                 if (data.items[i].saleInfo.saleability == "NOT_FOR_SALE") {
-                    book.price = 'no data'
+                    book.price = ''
                 } else if (data.items[i].saleInfo.saleability == "FREE") {
                     book.price = 'free'
                 } else {

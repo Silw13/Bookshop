@@ -18,20 +18,27 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     bookName.classList.add("main-content__book-name");
     bookName.textContent = name;
     const bookRating = document.createElement("div");
-    bookRating.classList.add("main-content__book-rating");
-    for (let i = 0; i < 5; i++) {
-        let starRating = Math.floor(rating)
-        let star = document.createElement("span");
-        star.classList.add("main-content__book-rating-star");
-        star.textContent = "★";
-        if (starRating - 1 >= i) {
-            star.classList.add("main-content__book-rating-star_active");
+
+    if (rating != undefined) {
+
+        bookRating.classList.add("main-content__book-rating");
+        for (let i = 0; i < 5; i++) {
+            let starRating = Math.floor(rating)
+            let star = document.createElement("span");
+            star.classList.add("main-content__book-rating-star");
+            star.textContent = "★";
+            if (starRating - 1 >= i) {
+                star.classList.add("main-content__book-rating-star_active");
+            }
+            bookRating.append(star)
         }
-        bookRating.append(star)
+        const bookReviews = document.createElement("span");
+        bookReviews.classList.add("main-content__book-reviews");
+        bookReviews.textContent = `${reviewNum} review`;
+        bookRating.append(bookReviews);
     }
-    const bookReviews = document.createElement("span");
-    bookReviews.classList.add("main-content__book-reviews");
-    bookReviews.textContent = `${reviewNum} review`;
+
+
     const bookDescription = document.createElement("p");
     bookDescription.classList.add("main-content__book-description");
     bookDescription.textContent = description;
@@ -41,9 +48,11 @@ export function createBook(author, cover, name, rating, reviewNum, description, 
     const buyButton = document.createElement("button");
     buyButton.classList.add("button", "button_buy-button", "button_buy-button-active");
     buyButton.textContent = "buy now";
-    bookRating.append(bookReviews);
+
     bookInfo.append(bookAuthor, bookName, bookRating, bookDescription, bookPrice, buyButton);
     bookCard.append(bookCover, bookInfo);
     const mainContent = document.querySelector(".main-content__book-catalog");
     mainContent.append(bookCard);
 }
+
+
