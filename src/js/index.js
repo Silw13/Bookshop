@@ -27,7 +27,7 @@ const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
 const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
 let booksInCart = [];
-if (JSON.parse(localStorage.getItem('cashedCart')) != false) {
+if (JSON.parse(localStorage.getItem('cashedCart')) != null) {
     booksInCart = JSON.parse(localStorage.getItem('cashedCart'));
     BOOK_COUNTER_TXT.innerText = booksInCart.length;
     BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
