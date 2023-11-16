@@ -27,11 +27,6 @@ const BOOK_COUNTER_EL = document.querySelector('.header__shoping-cart-quantity')
 const BOOK_COUNTER_TXT = document.querySelector('.header__shoping-cart-quantity-text')
 
 let booksInCart = [];
-if (JSON.parse(localStorage.getItem('cashedCart')) != null) {
-    booksInCart = JSON.parse(localStorage.getItem('cashedCart'));
-    BOOK_COUNTER_TXT.innerText = booksInCart.length;
-    BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
-}
 let buyButtons = [];
 let currectCat;
 let bookStartIndex;
@@ -42,8 +37,6 @@ function addBookToCart(buttonIndex) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].innerText = 'in the cart'
         booksInCart.push(booksOnPage[buttonIndex]);
-        localStorage.setItem('cashedCart', JSON.stringify(booksInCart));
-        console.log(booksInCart);
         if (booksInCart.length == 1) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
@@ -52,8 +45,7 @@ function addBookToCart(buttonIndex) {
         buyButtons[buttonIndex].classList.toggle('button_buy-button-active')
         buyButtons[buttonIndex].innerText = 'buy now';
         booksInCart = booksInCart.filter((book) => JSON.stringify(book) !== JSON.stringify(booksOnPage[buttonIndex]));
-        localStorage.setItem('cashedCart', JSON.stringify(booksInCart));
-        console.log(booksInCart)
+
         if (booksInCart.length == 0) {
             BOOK_COUNTER_EL.classList.toggle('header__shoping-cart-quantity_disabled')
         }
